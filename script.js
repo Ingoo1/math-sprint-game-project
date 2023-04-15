@@ -30,6 +30,29 @@ let secondNumber = 0;
 let equationObject = {};
 const wrongFormat = [];
 
+// Displays 3, 2, 1, GO!
+function countdownStart() {
+  countdown.textContent = '3';
+  setTimeout(() => {
+    countdown.textContent = '2';
+  }, 1000);
+  setTimeout(() => {
+    countdown.textContent = '1';
+  }, 2000);
+  setTimeout(() => {
+    countdown.textContent = 'GO!';
+  }, 3000);
+}
+
+// Navigate from Splash Page to CountdownPage to Game Page
+function showCountdown() {
+  countdownPage.hidden = false;
+  splashPage.hidden = true;
+  countdownStart();
+  //   populateGamePage();
+  //   setTimeout(showGamePage, 4000);
+}
+
 // Get the value from selected radio button
 function getRadioValue() {
   let radioValue;
@@ -46,6 +69,9 @@ function selectQuestionAmount(e) {
   e.preventDefault();
   questionAmount = getRadioValue();
   console.log('question amount:', questionAmount);
+  if (questionAmount) {
+    showCountdown();
+  }
 }
 
 // Switch selected input styling
