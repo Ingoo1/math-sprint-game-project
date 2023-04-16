@@ -9,7 +9,7 @@ const radioContainers = document.querySelectorAll('.radio-container');
 const radioInputs = document.querySelectorAll('input');
 const bestScores = document.querySelectorAll('.best-score-value');
 // Countdown Page
-const countdown = document.querySelector('.countdown');
+const countDown = document.querySelector('.countdown');
 // Game Page
 const itemContainer = document.querySelector('.item-container');
 // Score Page
@@ -257,16 +257,31 @@ function populateGamePage() {
 
 // Displays 3, 2, 1, GO!
 function countdownStart() {
-  countdown.textContent = '3';
-  setTimeout(() => {
-    countdown.textContent = '2';
+  let count = 3;
+  countDown.textContent = count;
+  const timeCountDown = setInterval(() => {
+    count--;
+    if (count === 0) {
+      countDown.textContent = 'Go!';
+    } else if (count === -1) {
+      showGamePage();
+      clearInterval(timeCountDown);
+    } else {
+      countDown.textContent = count;
+    }
   }, 1000);
-  setTimeout(() => {
-    countdown.textContent = '1';
-  }, 2000);
-  setTimeout(() => {
-    countdown.textContent = 'GO!';
-  }, 3000);
+
+  // Comment after review...........................
+  // countdown.textContent = '3';
+  // setTimeout(() => {
+  //   countdown.textContent = '2';
+  // }, 1000);
+  // setTimeout(() => {
+  //   countdown.textContent = '1';
+  // }, 2000);
+  // setTimeout(() => {
+  //   countdown.textContent = 'GO!';
+  // }, 3000);
 }
 
 // Navigate from Splash Page to CountdownPage to Game Page
@@ -275,7 +290,8 @@ function showCountdown() {
   splashPage.hidden = true;
   countdownStart();
   populateGamePage();
-  setTimeout(showGamePage, 4000);
+  // Comment after review...........................
+  // setTimeout(showGamePage, 4000);
 }
 
 // Get the value from selected radio button
